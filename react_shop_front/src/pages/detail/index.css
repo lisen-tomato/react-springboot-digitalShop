@@ -1,0 +1,57 @@
+.detail-content .ant-carousel .slick-dots li button {
+    background: #ccc;
+}
+
+.detail-content .ant-carousel .slick-dots li.slick-active button {
+    background: #A3A3A3;
+}
+
+.detail-content .detail-item {
+    text-align: center;
+    padding-top: 150px;
+}
+
+.detail-content .detail-title {
+    font-size: 24px;
+    font-weight: 400;
+    color: #212121;
+}
+
+.detail-content .detail-desc {
+    color: #b0b0b0;
+}
+
+.detail-content .detail-price {
+    font-size: 18px;
+    color: #ff6700;
+}
+
+.detail-content .detail-count {
+    margin: 50px 0;
+}
+
+.detail-content .detail-count span {
+    margin-left: 20px;
+}
+
+.detail-content .detail-addCart {
+    width: 300px;
+    height: 54px;
+    background: #ff6700;
+    border-color: #ff6700;
+    color: #fff;
+}
+
+.detail-content .detail-addCart:hover{
+    background: #ff6700;
+    border-color: #ff6700;
+    color: #fff;
+}
+
+.detail-content .detail-addCart:focus {
+    background: #ff6700;
+    border-color: #ff6700;
+    color: #fff;
+}
+
+

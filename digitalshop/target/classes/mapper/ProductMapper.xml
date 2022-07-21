@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lisen.mapper.ProductMapper">
+    <!--商品分页查询-->
+    <select id="selectPage" resultType="com.lisen.pojo.Product">
+        select * from product
+    </select>
+
+    <!--根据商品分类查找-->
+    <select id="selectProductByCategoryId" resultType="com.lisen.pojo.Product">
+        select * from product where category_id = #{categoryId}
+    </select>
+
+    <!--商品模糊查询-->
+    <select id="searchPage" resultType="com.lisen.pojo.Product">
+        select * from product
+        <where>
+            <choose>
+                <when test= "_parameter.get('searchType') == 'productName'">
+                    title like concat('%',#{searchName},'%')
+                </when>
+                <otherwise>
+                    des like concat('%',#{searchName},'%')
+                </otherwise>
+            </choose>
+        </where>
+    </select>
+
+    <!-- 根据商品id查询商品详情-->
+    <select id="findProductById" resultType="com.lisen.pojo.Product">
+        select * from product where id=#{id}
+    </select>
+
+    <!--添加商品-->
+    <insert id="addProduct" useGeneratedKeys="true" keyProperty="id">
+        insert into product (category_id,title,des,price,image)
+        values(#{categoryId},#{title},#{des},#{price},#{image})
+    </insert>
+
+    <!--修改商品-->
+    <update id="updateProduct">
+        update product set
+        <if test="categoryId != null">category_id = #{categoryId},</if>
+        <if test="title != null">title= #{title},</if>
+        <if test="des != null">des = #{des},</if>
+        <if test="price != null">price= #{price},</if>
+        <if test="image != null">image= #{image}</if>
+        where id = #{id}
+    </update>
+
+    <!--删除商品-->
+    <delete id="deleteProduct">
+        delete from product where id = #{id}
+    </delete>
+</mapper>

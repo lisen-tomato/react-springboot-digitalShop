@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lisen.mapper.CartMapper">
+
+    <!-- 插入购物车数据：Integer insert(Cart cart) -->
+    <insert id="insert" parameterType="com.lisen.pojo.Cart" useGeneratedKeys="true" keyProperty="cid">
+        insert into cart (uid, pid, price, num)
+        values (#{uid}, #{pid}, #{price}, #{num})
+    </insert>
+
+    <!-- 查询某用户的购物车数据：List<CartVO> findVOByUid(Integer uid) -->
+    <select id="findCartByUid" resultType="com.lisen.pojo.CartData">
+        SELECT cid, uid, pid, cart.price, cart.num, product.title, product.image
+        FROM cart LEFT JOIN product ON cart.pid = product.id
+        WHERE uid = #{uid}
+    </select>
+
+    <!--根据购物车id删除购物车-->
+    <delete id="deleteCartById">
+        delete from cart where cid=#{cid}
+    </delete>
+
+
+    <!-- 根据若干个购物车数据id查询详情的列表：List<CartVO> findVOByCids(Integer[] cids) -->
+    <select id="findCartByCids" resultType="com.lisen.mapper.CartMapper">
+        SELECT cid, uid, pid, cart.price, cart.num, product.title, product.price AS realPrice, product.image
+        FROM t_cart LEFT JOIN t_product ON t_cart.pid = t_product.id
+        WHERE cid IN (<foreach collection="array" item="cid" separator=",">#{cid}</foreach>)
+        ORDER BY t_cart.created_time DESC
+    </select>
+</mapper>

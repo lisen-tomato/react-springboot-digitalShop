@@ -1,0 +1,15 @@
+.order .order-header {
+    background-color: #fff;
+    border-bottom: 2px solid #ff6700;
+}
+
+.order .order-header .order-title {
+    font-size: 28px;
+    color: #424242;
+    margin-left: 30px;
+}
+
+.order .order-content {
+    background-color: #fff;
+    margin: 40px 150px;
+}
