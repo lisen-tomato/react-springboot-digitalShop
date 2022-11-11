@@ -12,23 +12,23 @@ export const reqLogin = (username,password) => ajax('/api/admin/login',{username
  * json请求的接口请求函数
  */
 
-export const reqWeather = ()=>{
-   return new Promise((resolve,reject)=>{
-    const url = 'https://restapi.amap.com/v3/weather/weatherInfo?key=72f95aab0a7263dea78130441fa53b98&city=110000&extensions=base&output=JSON'
-    jsonp(url,{},(error,data)=>{
-        //成功
-        if(!error && data.status==='1'){
-            //city weather reporttime 取出数据
-           const {city,weather} = data.lives[0]
-           resolve({city,weather})
+// export const reqWeather = ()=>{
+//    return new Promise((resolve,reject)=>{
+//     const url = '自己申请'
+//     jsonp(url,{},(error,data)=>{
+//         //成功
+//         if(!error && data.status==='1'){
+//             //city weather reporttime 取出数据
+//            const {city,weather} = data.lives[0]
+//            resolve({city,weather})
 
-        }else {
-            //失败了，统一处理错误
-            message.error('获取天气信息失败')
-        }
-    })
-   })
-}
+//         }else {
+//             //失败了，统一处理错误
+//             message.error('获取天气信息失败')
+//         }
+//     })
+//    })
+// }
 
 //获取分类列表
 export const reqCategorys = ()=>ajax('/api/admin/category/getCategoryList')
